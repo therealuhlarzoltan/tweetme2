@@ -29,7 +29,7 @@ def tweet_detail_view(request, tweet_id):
 
 def tweet_list_view(request):
     qs = Tweet.objects.all()
-    tweets_list = [{"id": x.id, "content": x.content, 'likes':12} for x in qs]
+    tweets_list = [x.serialize() for x in qs]
     data = {
         "response": tweets_list
     }
@@ -42,7 +42,7 @@ def tweet_create_form(request):
         obj = form.save(commit=False)
         obj.save()
         if request.is_ajax():
-            return JsonResponse({}, status=201) # 201 = created items
+            return JsonResponse(obj.serialize(), status=201) # 201 = created items
 
         if next_url != None and is_safe_url(next_url, allowed_hosts=ALLOWED_HOSTS):
             return redirect(next_url)
