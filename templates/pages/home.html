@@ -99,6 +99,14 @@ const csrftoken = getCookie('csrftoken');
             else if(xhr.status === 500) {
                 alert("There was a server error, please try again.")
             }
+            else if(xhr.status === 403) {
+                alert("You must login!")
+                windows.location.href = "/login"
+            }
+            else if(xhr.status === 401) {
+                alert("You must login!")
+                windows.location.href = "/login"
+            }
             
             
         }
@@ -121,7 +129,7 @@ const csrftoken = getCookie('csrftoken');
         xhr.open(method, url)
         xhr.onload = function() {
             const serverResponse = xhr.response
-            var listedItems = serverResponse.response
+            var listedItems = serverResponse // array
             var finalTweetStr = ""
             var i;
             for (i=0;i<listedItems.length; i++) {
