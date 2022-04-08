@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from unicodedata import name
+from tweets import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("tweets.urls"))
+    path('', views.home_view, name='home'),
+    path('tweets', views.tweet_list_view, name='tweetlist'),
+    path('tweets/<int:tweet_id>', views.tweet_detail_view, name='tweetview'),
+    path('create-tweet', views.tweet_create_form, name='create'),
+    path('api/tweets/', include('tweets.urls'))
 ]
