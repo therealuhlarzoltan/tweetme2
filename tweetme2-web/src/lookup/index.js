@@ -1,4 +1,4 @@
-import { loadTweets } from "./components";
+import {loadTweets} from './components'
 
 export {
     loadTweets
