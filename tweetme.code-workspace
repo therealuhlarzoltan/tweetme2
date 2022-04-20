@@ -2,9 +2,9 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "tweetme2"
 		}
-	]
+	],
+	"settings": {
+		"python.pythonPath": "/Users/cfe/.local/share/virtualenvs/tweetme2-LFH35Wvl/bin/python"
+	}
 }
