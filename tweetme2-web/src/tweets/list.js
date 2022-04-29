@@ -4,8 +4,6 @@ import {apiTweetList} from './lookup'
 
 import {Tweet} from './detail'
 
-
-
 export function TweetsList(props) {
     const [tweetsInit, setTweetsInit] = useState([])
     const [tweets, setTweets] = useState([])
@@ -48,3 +46,5 @@ export function TweetsList(props) {
         key={`${index}-{item.id}`} />
     })
   }
+
+

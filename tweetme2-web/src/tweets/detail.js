@@ -1,11 +1,9 @@
+
 import React, {useState}  from 'react'
 
-import { ActionBtn } from './buttons'
+import {ActionBtn} from './buttons'
 
-
-
-
-export function ParentTweet(props) {
+export function ParentTweet(props){
     const {tweet} = props
     return tweet.parent ? <div className='row'>
     <div className='col-11 mx-auto p-3 border rounded'>
