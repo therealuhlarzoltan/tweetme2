@@ -22,13 +22,12 @@ from django.views.generic import TemplateView
 from accounts.views import (
     login_view,
     logout_view,
-    register_view
+    register_view,
 )
 
 from tweets.views import (
     tweets_list_view,
     tweets_detail_view,
-
 )
 
 urlpatterns = [
