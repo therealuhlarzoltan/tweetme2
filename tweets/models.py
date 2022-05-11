@@ -11,18 +11,18 @@ class TweetLike(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 class TweetQuerySet(models.QuerySet):
-    def feed(self, user):
-        profiles_exists = user.following.exists()
-        follow_users_id = []
-        if profiles_exists:
-            follow_users_id = user.following.values_list("user__id", flat=True)
-        return self.filter(
-            Q(user__id__in=follow_users_id) |
-            Q(user=user)
-            ).distinct().order_by("-timestamp")
-
     def by_username(self, username):
         return self.filter(user__username__iexact=username)
+
+    def feed(self, user):
+        profiles_exist = user.following.exists()
+        followed_users_id = []
+        if profiles_exist:
+            followed_users_id = user.following.values_list("user__id", flat=True) # [x.user.id for x in profiles]
+        return self.filter(
+            Q(user__id__in=followed_users_id) |
+            Q(user=user)
+        ).distinct().order_by("-timestamp")
 
 class TweetManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
@@ -41,7 +41,7 @@ class Tweet(models.Model):
     image = models.FileField(upload_to='images/', blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    objects = TweetManager
+    objects = TweetManager()
     # def __str__(self):
     #     return self.content
     
