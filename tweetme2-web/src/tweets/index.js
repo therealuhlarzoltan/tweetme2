@@ -8,11 +8,11 @@ import {TweetsList} from './list'
 
 export {
     ActionBtn, 
+    FeedComponent,
     Tweet,
     TweetCreate,
     TweetsComponent,
     TweetDetailComponent,
     TweetsList,
-    FeedComponent,
 
 }

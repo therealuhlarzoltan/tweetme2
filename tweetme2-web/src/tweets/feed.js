@@ -23,7 +23,7 @@ export function FeedList(props) {
             setNextUrl(response.next)
             setTweetsInit(response.results)
             setTweetsDidSet(true)
-          } 
+          }
         }
         apiTweetFeed(handleTweetListLookup)
       }
@@ -47,7 +47,7 @@ export function FeedList(props) {
             const newTweets = [...tweets].concat(response.results)
             setTweetsInit(newTweets)
             setTweets(newTweets)
-          } 
+          }
         }
         apiTweetFeed(handleLoadNextResponse, nextUrl)
       }

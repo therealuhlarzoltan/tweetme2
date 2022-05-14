@@ -3,9 +3,8 @@ import React, {useEffect, useState}  from 'react'
 import {TweetCreate} from './create'
 import {Tweet} from './detail'
 import {apiTweetDetail} from './lookup'
-import { TweetsList } from './list'
-import { FeedList } from './feed'
-
+import {FeedList} from './feed'
+import {TweetsList} from './list'
 
 export function FeedComponent(props) {
   const [newTweets, setNewTweets] = useState([])
