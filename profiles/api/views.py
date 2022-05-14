@@ -11,6 +11,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from ..models import Profile
+from ..serializers import PublicProfileSerializer
 
 User = get_user_model()
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
@@ -45,3 +46,13 @@ def user_follow_view(request, username, *args, **kwargs):
         pass
     current_followers_qs = profile.followers.all()
     return Response({"count": current_followers_qs.count()}, status=200)
+
+@api_view(['GET'])
+def profile_detail_api_view(request, username, *args, **kwargs):
+    # get the profile for the passed username
+    qs = Profile.objects.filter(user__username=username)
+    if not qs.exists():
+        return Response({"detail": "User not found"}, status=404)
+    profile_obj = qs.first()
+    data = PublicProfileSerializer(instance=profile_obj)
+    return Response(data.data, status=200)
