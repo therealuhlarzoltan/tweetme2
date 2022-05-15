@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { ProfileBadgeComponent } from './profiles';
+import {ProfileBadgeComponent} from './profiles'
 import {FeedComponent, TweetsComponent, TweetDetailComponent} from './tweets'
 import * as serviceWorker from './serviceWorker';
 
