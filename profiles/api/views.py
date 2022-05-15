@@ -1,3 +1,4 @@
+from multiprocessing import context
 import random
 
 from django.conf import settings
@@ -45,7 +46,8 @@ def user_follow_view(request, username, *args, **kwargs):
     else:
         pass
     current_followers_qs = profile.followers.all()
-    return Response({"count": current_followers_qs.count()}, status=200)
+    data = PublicProfileSerializer(instance=profile, context={"request": request})
+    return Response({data.data}, status=200)
 
 @api_view(['GET'])
 def profile_detail_api_view(request, username, *args, **kwargs):
@@ -54,5 +56,5 @@ def profile_detail_api_view(request, username, *args, **kwargs):
     if not qs.exists():
         return Response({"detail": "User not found"}, status=404)
     profile_obj = qs.first()
-    data = PublicProfileSerializer(instance=profile_obj)
+    data = PublicProfileSerializer(instance=profile_obj, context={"request": request})
     return Response(data.data, status=200)
